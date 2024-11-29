@@ -33,11 +33,13 @@ st.markdown(r"""
 </style>
 """, unsafe_allow_html=True)
 
-genre = st.selectbox("Choisissez un genre", ["Action", "Comédie", "Science-fiction"])
-st.write("Vous avez choisi :", genre)
-
 url = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/title_movies_fr_60%2B_85%2B%20(1).csv"
 dataset = pd.read_csv(url, sep =',', encoding='utf-8') 
+liste_genres = dataset['genres'].unique()
+
+genre = st.selectbox("Choisissez un genre", liste_genres)
+st.write("Vous avez choisi :", genre)
+
 dataset_filtre = dataset[dataset['genres'] == genre].loc[:,['title','averageRating','startYear']]
 dataset_filtre = dataset_filtre.rename(columns={'title': 'Titre du film', 'averageRating': 'Note moyenne', 'startYear': 'Année de sortie'})
 
