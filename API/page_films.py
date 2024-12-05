@@ -27,8 +27,10 @@ st.markdown(f"""
 
 # Chargement et préparation des données
 url = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/movies_with_reco.csv"
+url_actors = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/actors.csv"
 base_image = "https://image.tmdb.org/t/p/w500/"
 dataset = pd.read_csv(url, sep=',', encoding='utf-8')
+dataset_actors = pd.read_csv(url_actors, sep=',', encoding='utf-8')
 liste_genres = dataset['genres'].unique()
 
 # Initialisation des variables d'état pour l'affichage des différents blocs
@@ -61,7 +63,6 @@ if st.session_state.afficher_bloc_films:
     # Affichage des films
     nb_colonnes = 4
     cols = st.columns(nb_colonnes)
-    
     for index, row in dataset_filtre.iterrows():
         col = cols[index % nb_colonnes]
         with col:
@@ -90,11 +91,29 @@ if not st.session_state.afficher_bloc_films and st.session_state.film_selectionn
     propal = voisins.iloc[:,0].to_list()
     try : propal.remove(row_film)
     except : propal.pop()
+
+    set_actors = pd.DataFrame(dataset_actors[dataset_actors['tconst'] == st.session_state.imdb_id])
+    actor1= list(set_actors[set_actors['ordering']==1]['primaryName'].values)
+    actor2= list(set_actors[set_actors['ordering']==2]['primaryName'].values)
+    actor3= list(set_actors[set_actors['ordering']==3]['primaryName'].values)
+
     st.image(base_image + str(dataset.loc[row_film,'poster_path']), width=200)
     st.write("")
     st.write(f"**Année** : {dataset.loc[row_film,'startYear']} - **Recommandé à** {dataset.loc[row_film,'averageRating']*10} %")
     st.write(f"**Scenario**\n{dataset.loc[row_film,'overview']}")
     st.write("")
+    actor1_name = actor1[0] if actor1 else "Unknown"
+    actor2_name = actor2[0] if actor2 else "Unknown"
+    actor3_name = actor3[0] if actor3 else "Unknown"
+    if actor1_name != "Unknown" and actor2_name != "Unknown" and actor3_name != "Unknown":
+        st.write(f"Avec {actor1_name}, {actor2_name} et {actor3_name}")
+    elif actor1_name != "Unknown" and actor2_name != "Unknown" :
+        st.write(f"Avec {actor1_name} et {actor2_name}")
+    elif actor2_name != "Unknown" and actor3_name != "Unknown" :
+        st.write(f"Avec {actor2_name} et {actor3_name}")    
+    elif actor1_name != "Unknown" and actor3_name != "Unknown" :
+        st.write(f"Avec {actor1_name} et {actor3_name}")    
+        
     st.write("Vous pourriez aussi aimer :")
     colonnes = st.columns(3)
     for i in range(len(propal)):
