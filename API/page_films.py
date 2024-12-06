@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import random
 
 # Titre et configuration
 st.set_page_config(page_title="Multimedia Diffusion - Vos films", page_icon=":bar_chart:")
