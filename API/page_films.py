@@ -31,7 +31,7 @@ url = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/m
 url_actors = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/actors.csv"
 base_image = "https://image.tmdb.org/t/p/w500/"
 dataset = pd.read_csv(url, sep=',', encoding='utf-8')
-dataset = dataset.iloc[random.sample(range(len(dataset)), 10000)]
+dataset = dataset.iloc[random.sample(range(len(dataset)), 5000)]
 dataset_actors = pd.read_csv(url_actors, sep=',', encoding='utf-8')
 liste_genres = dataset['genres'].unique()
 
