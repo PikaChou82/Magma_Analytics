@@ -3,9 +3,9 @@ Projet Multimédia Diffusion / Magma Analytics - WCS
 
 # Etapes :
 ## Sélection des Tables finales
-  **Table 1960_85+ [AUDREY]**
+  **Movies Final [AUDREY & MEDHI]**
   
-  Filtre : +85 minutes / films diffusés sur la région France / sortis après 1960
+  Filtre : +85 minutes / films diffusés sur la région France / sortis après 1960 / note supérieure à 6
   
   KPIs : <br>
       Nombre total de films ok <br>
@@ -46,9 +46,9 @@ Projet Multimédia Diffusion / Magma Analytics - WCS
       video <br>
   **Statut : en cours**
 
-  **Table série [AMADOU]**
+  **Table série [AMADOU & MEDHI]**
   
-  Filtre : à définir
+  Filtre : à partir de 1960
   
   KPIs :  <br>
       Nombre total de séries  <br>
@@ -77,17 +77,16 @@ Projet Multimédia Diffusion / Magma Analytics - WCS
 
   Dossier API
   
-  1 Page principale où on choisit une page films / une page série / une page recherche ? <br>
-    A faire : proposer la page recheche [AUDREY]
-              proposer une sélection de ses préférences utilisateurs (création dictionnaire puis affichage de ses infos et préférences) <br>
+  1 Page principale où on choisit une page films / une page série / une page recherche [AUDREY] <br>
+    Créée avec les infos utilisateurs <br>
   1 Page films <br>
     A faire : améliorer le visuel
               rajouter un choix de sélection pour aller sur une page choix <br>
   1 Page série : améliorer le visuel <br>
               rajouter un choix de sélection pour aller sur une page choix <br>
-  1 Page recherche : [GIULIO] <br>
+  1 Page recherche : [GIULIO & MARIAMMA] <br>
     A créer avec plusieurs possibilités de critères <br>
   1 Page sélection : [AUDREY] <br>
-    A créer avec toutes les infos du film (nom, date, producteur, acteurs, overview, bande annonce, affiche)
-    Ajouter une modèle ML de classification
+    Créée avec toutes les infos du film (nom, date, acteurs, overview, affiche)
+    Modèle de Classification (Nearest Neighbours)
   
