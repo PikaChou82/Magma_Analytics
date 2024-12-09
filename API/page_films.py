@@ -31,7 +31,8 @@ url_actors = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/
 base_image = "https://image.tmdb.org/t/p/w500/"
 dataset = pd.read_csv(url, sep=',', encoding='utf-8')
 dataset_actors = pd.read_csv(url_actors, sep=',', encoding='utf-8')
-liste_genres = dataset['genres'].unique()
+liste_genres = ['Tous les genres']
+liste_genres.extend(dataset['genres'].unique())
 
 # Initialisation des variables d'état pour l'affichage des différents blocs
 if 'afficher_bloc_films' not in st.session_state:
@@ -56,7 +57,10 @@ if st.session_state.afficher_bloc_films:
     st.write("Vous avez choisi :", genre)
 
     # Filtrer les films selon le genre
-    dataset_filtre = dataset[dataset['genres'] == genre].loc[:, ['title', 'averageRating', 'startYear', 'poster_path', 'imdb_id']]
+    if genre == "Tous les genres":
+        dataset_filtre = dataset.loc[:, ['title', 'averageRating', 'startYear', 'poster_path', 'imdb_id']]
+    else:
+        dataset_filtre = dataset[dataset['genres'] == genre].loc[:, ['title', 'averageRating', 'startYear', 'poster_path', 'imdb_id']]
     dataset_filtre = dataset_filtre.sort_values(by='averageRating', ascending=False)
     dataset_filtre = dataset_filtre.rename(columns={'title': 'Titre du film', 'averageRating': 'Note', 'startYear': 'Année', 'poster_path': 'Affiche', 'imdb_id': 'imdb_id'})
 
