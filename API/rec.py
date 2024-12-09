@@ -10,7 +10,7 @@ with col1:
     # Logo
     st.image(f'https://github.com/PikaChou82/Magma_Analytics/blob/main/Images/Multimedia.png?raw=true', width=100)
 with col2:
-    st.title("Bienvenue dans votre espace films")
+    st.title("Bienvenue dans votre espace de recherche")
 
 # Fond d'écran
 image_url = "https://github.com/PikaChou82/Magma_Analytics/blob/main/Images/fond.jpg?raw=true"
@@ -51,6 +51,7 @@ def back():
 
 # Bloc 1 : Affichage des films
 if st.session_state.afficher_bloc_films:
+    # Sélection du genre
     genre = st.selectbox("Choisissez un genre", liste_genres)
     st.write("Vous avez choisi :", genre)
     
@@ -59,10 +60,16 @@ if st.session_state.afficher_bloc_films:
     
     # Nouveau champ pour l'acteur
     acteur_recherche = st.text_input("Choisissez un acteur", "")
+    
+    # Nouveau champ pour l'année
+    annee_recherche = st.text_input("Choisissez une année", "")
 
     # Filtrer les films selon le genre et le titre et acteur recherchés
-    dataset_filtre = dataset[dataset['genres'] == genre]
-    
+    if genre:
+        dataset_filtre = dataset[dataset['genres'] == genre]
+    else:
+        dataset_filtre = dataset  # Si aucun genre n'est sélectionné, ne pas filtrer
+
     # Filtrer par titre si un texte est entré
     if titre_recherche:
         dataset_filtre = dataset_filtre[dataset_filtre['title'].str.contains(titre_recherche, case=False, na=False)]
@@ -70,6 +77,10 @@ if st.session_state.afficher_bloc_films:
     # Filtrer par acteur si un texte est entré
     if acteur_recherche:
         dataset_filtre = dataset_filtre[dataset_filtre['actors'].str.contains(acteur_recherche, case=False, na=False)]
+    
+    # Filtrer par année si un texte est entré
+    if annee_recherche:
+        dataset_filtre = dataset_filtre[dataset_filtre['startYear'].astype(str).str.contains(annee_recherche)]
 
     dataset_filtre = dataset_filtre.loc[:, ['title', 'averageRating', 'startYear', 'poster_path', 'imdb_id']]
     dataset_filtre = dataset_filtre.sort_values(by='averageRating', ascending=False)
