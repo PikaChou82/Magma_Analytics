@@ -30,7 +30,7 @@ url_actors = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/
 base_image = "https://image.tmdb.org/t/p/w500/"
 dataset = pd.read_csv(url, sep=',', encoding='utf-8')
 dataset_actors = pd.read_csv(url_actors, sep=',', encoding='utf-8')
-liste_genres = dataset['genres'].unique()
+liste_genres = ["Tous les genres"] + list(dataset['genres'].unique())
 
 # Initialisation des variables d'état pour l'affichage des différents blocs
 if 'afficher_bloc_films' not in st.session_state:
@@ -51,8 +51,8 @@ def back():
 
 # Bloc 1 : Affichage des films
 if st.session_state.afficher_bloc_films:
-    # Sélection du genre
-    genre = st.selectbox("Choisissez un genre", liste_genres)
+    # Sélection du genre avec "Tous les genres" comme valeur par défaut
+    genre = st.selectbox("Choisissez un genre", liste_genres, index=0)
     st.write("Vous avez choisi :", genre)
     
     # Nouveau champ pour le titre
@@ -64,11 +64,11 @@ if st.session_state.afficher_bloc_films:
     # Nouveau champ pour l'année
     annee_recherche = st.text_input("Choisissez une année", "")
 
-    # Filtrer les films selon le genre et le titre et acteur recherchés
-    if genre:
+    # Filtrer les films selon le genre, le titre, l'acteur, et l'année
+    if genre and genre != "Tous les genres":
         dataset_filtre = dataset[dataset['genres'] == genre]
     else:
-        dataset_filtre = dataset  # Si aucun genre n'est sélectionné, ne pas filtrer
+        dataset_filtre = dataset  # Si "Tous les genres" est sélectionné, ne pas filtrer
 
     # Filtrer par titre si un texte est entré
     if titre_recherche:
@@ -109,21 +109,23 @@ if st.session_state.afficher_bloc_films:
 
 if not st.session_state.afficher_bloc_films and st.session_state.film_selectionne:
 
-    st.button("Back to Films",on_click=back)
+    st.button("Back to Films", on_click=back)
 
     st.write(f"### {st.session_state.film_selectionne}")
-    row_film = dataset[dataset['imdb_id'] ==st.session_state.imdb_id].index[0]
+    row_film = dataset[dataset['imdb_id'] == st.session_state.imdb_id].index[0]
     voisins = pd.DataFrame(dataset.loc[row_film, ['Voisin1', 'Voisin2', 'Voisin3', 'Voisin4']])
-    propal = voisins.iloc[:,0].to_list()
-    try : propal.remove(row_film)
-    except : propal.pop()
+    propal = voisins.iloc[:, 0].to_list()
+    try:
+        propal.remove(row_film)
+    except:
+        propal.pop()
 
     set_actors = pd.DataFrame(dataset_actors[dataset_actors['tconst'] == st.session_state.imdb_id])
-    actor1= list(set_actors[set_actors['ordering']==1]['primaryName'].values)
-    actor2= list(set_actors[set_actors['ordering']==2]['primaryName'].values)
-    actor3= list(set_actors[set_actors['ordering']==3]['primaryName'].values)
+    actor1 = list(set_actors[set_actors['ordering'] == 1]['primaryName'].values)
+    actor2 = list(set_actors[set_actors['ordering'] == 2]['primaryName'].values)
+    actor3 = list(set_actors[set_actors['ordering'] == 3]['primaryName'].values)
 
-    st.image(base_image + str(dataset.loc[row_film,'poster_path']), width=200)
+    st.image(base_image + str(dataset.loc[row_film, 'poster_path']), width=200)
     st.write("")
     st.write(f"**Année** : {dataset.loc[row_film,'startYear']} - **Recommandé à** {dataset.loc[row_film,'averageRating']*10} %")
     st.write(f"**Scenario**\n{dataset.loc[row_film,'overview']}")
@@ -134,11 +136,11 @@ if not st.session_state.afficher_bloc_films and st.session_state.film_selectionn
     actor3_name = actor3[0] if actor3 else "Unknown"
     if actor1_name != "Unknown" and actor2_name != "Unknown" and actor3_name != "Unknown":
         st.write(f"Avec {actor1_name}, {actor2_name} et {actor3_name}")
-    elif actor1_name != "Unknown" and actor2_name != "Unknown" :
+    elif actor1_name != "Unknown" and actor2_name != "Unknown":
         st.write(f"Avec {actor1_name} et {actor2_name}")
-    elif actor2_name != "Unknown" and actor3_name != "Unknown" :
+    elif actor2_name != "Unknown" and actor3_name != "Unknown":
         st.write(f"Avec {actor2_name} et {actor3_name}")    
-    elif actor1_name != "Unknown" and actor3_name != "Unknown" :
+    elif actor1_name != "Unknown" and actor3_name != "Unknown":
         st.write(f"Avec {actor1_name} et {actor3_name}")    
 
     st.write("Vous pourriez aussi aimer :")
