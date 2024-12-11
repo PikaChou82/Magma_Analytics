@@ -30,17 +30,11 @@ Mariamma, Amadaou, Giulio, Mehdi et Audrey
 > [!NOTE]
 > KPIs : <br>
 > - [X] Films
-> - [ ] Acteurs
+> - [X] Acteurs
 > - [ ] Séries
 > - [ ] Tmdb
 
 > [!IMPORTANT]
->  **KPIs restants Acteurs**<br>
->  Nombre moyen d'acteurs par film (seulement pour le top10) <br>
->  Répartition des acteurs par genre de films : Pourcentage ou nombre absolu d'acteurs dans chaque genre de films. <br>
->  Top 10 des acteurs les plus actifs : Les acteurs ayant joué dans le plus grand nombre de films <br>
->  Nombre total d'acteurs <br>
->  Nombre de films par acteur par genre : Nombre de films par acteur, ventilé par genre, pour voir les préférences de genre des acteurs. <br>
 >  **KPIs restants TmdB**<br>
 >  Budget <br>
 >  Revenus <br>
