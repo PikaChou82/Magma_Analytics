@@ -103,6 +103,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 user = st.text_input("Veuillez vous identifier pour plonger dans **votre** monde du cinéma ", value="Votre nom ici")
+def redirect_to_films():
+    st.markdown(f'<meta http-equiv="refresh" content="0; url=https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/">', unsafe_allow_html=True)
 
 
 # Bouton de validation
@@ -129,8 +131,6 @@ if st.button("Me connecter"):
     else:
         st.write(f"désolé, je n'ai pas le plaisir de vous connaître... Rdv en cinéma pour vous inscrire avec notre équipe !")
 
-def redirect_to_films():
-    st.markdown(f'<meta http-equiv="refresh" content="0; url=https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/">', unsafe_allow_html=True)
 
 
 # Détecter le système d'exploitation
