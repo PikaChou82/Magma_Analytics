@@ -118,7 +118,9 @@ if st.button("Me connecter"):
         col1, col2, col3 = st.columns(3)
         with col1:
             if st.button('Aller voir les films'):
-                st.experimental_redirect(url="www.google.com")
+                test = "https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/"
+                st.write(f"Vous allez être redirigé vers : {test}")
+                st.experimental_redirect(url=test)
         with col2:
             st.button('Aller voirs les séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_séries.py
         with col3:
