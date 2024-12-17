@@ -9,7 +9,7 @@ import sys
 
 sys.path.append("Pages")
 
-from Pages.page_films import page_films
+from Pages import page_films
 # Titre
 st.set_page_config(page_title="Multimedia Diffusion", page_icon=":bar_chart:")
 
