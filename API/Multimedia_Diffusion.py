@@ -118,15 +118,11 @@ if st.button("Me connecter"):
         st.write("")
         col1, col2, col3 = st.columns(3)
         with col1:
-            if st.button('Aller voir les films'):
-                test = "https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/"
-                st.write(f"Vous allez être redirigé vers : {test}")
-                time.sleep(15)
-                st.experimental_redirect(url=test)
+            st.markdown('[Aller voir les films](https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/)', unsafe_allow_html=True)
         with col2:
-            st.button('Aller voirs les séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_séries.py
+            st.markdown('[Aller voir les séries](https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/)', unsafe_allow_html=True)
         with col3:
-            st.button('Faire une recherche', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_recherche.py
+            st.markdown('[Recherche avancée](https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/)', unsafe_allow_html=True)
 
             
     else:
