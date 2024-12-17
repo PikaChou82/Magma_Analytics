@@ -118,11 +118,11 @@ if st.button("Me connecter"):
         st.write("")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown('[Aller voir les films](https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/)', unsafe_allow_html=True)
+            st.markdown('[Aller voir les films](https://magmaanalytics-filmspage.streamlit.app/)', unsafe_allow_html=True)
         with col2:
-            st.markdown('[Aller voir les séries](https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/)', unsafe_allow_html=True)
+            st.markdown('[Aller voir les séries](https://magmaanalytics-filmspage.streamlit.app/)', unsafe_allow_html=True)
         with col3:
-            st.markdown('[Recherche avancée](https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/)', unsafe_allow_html=True)
+            st.markdown('[Recherche avancée](https://magmaanalytics-filmspage.streamlit.app/)', unsafe_allow_html=True)
 
             
     else:
