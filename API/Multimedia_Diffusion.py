@@ -118,7 +118,7 @@ if st.button("Me connecter"):
         st.write("")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.button('Aller voir les films', on_click=lambda: ouvrir_application('https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/')) ## Renvoie à page_films.py
+            st.button('Aller voir les films', on_click=lambda: redirect_to_films()) ## Renvoie à page_films.py
         with col2:
             st.button('Aller voirs les séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_séries.py
         with col3:
@@ -127,6 +127,10 @@ if st.button("Me connecter"):
             
     else:
         st.write(f"désolé, je n'ai pas le plaisir de vous connaître... Rdv en cinéma pour vous inscrire avec notre équipe !")
+
+def redirect_to_films():
+    st.markdown(f'<meta http-equiv="refresh" content="0; url=https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/">', unsafe_allow_html=True)
+
 
 # Détecter le système d'exploitation
 if 'os' not in st.session_state:
