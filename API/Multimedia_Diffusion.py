@@ -38,6 +38,9 @@ with col1:
 st.markdown("<h1 style='color:darkblue; font-family:Arial; font-size:30px;'>Bienvenue dans votre espace Multimédia</h1>", unsafe_allow_html=True)
 st.write("")
 
+video_url = 'https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/main/Images/générique-médiavision-jean-mineur.mp4'
+st.video(video_url)
+
 # Fond d'écran
 image_url = "https://github.com/PikaChou82/Magma_Analytics/blob/main/Images/fond.jpg?raw=true"
 
@@ -112,17 +115,13 @@ if st.button("Me connecter"):
         st.write("Ravis de vous revoir, et bienvenue dans votre espace.")
         st.write("")
         st.write(f"#### Vos genres préférés : **{user['preferences']['genre1']}**, **{user['preferences']['genre2']}** et **{user['preferences']['genre3']}**")
-        st.write("On part sur ces univers ou tu veux explorer d'autres horizons ?")
-        col1, col2,col3, col4, col5 = st.columns(5)
+        st.write("")
+        col1, col2, col3 = st.columns(3)
         with col1:
-            st.button("Oui, classique !", on_click=lambda: ouvrir_application('films.py')) ## Renvoie à page_sélection.py
+            st.button('Aller voir les films', on_click=lambda: ouvrir_application('https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/')) ## Renvoie à page_films.py
         with col2:
-            st.button("Non surprends moi !", on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_sélection_inversée.py
-        with col3:
-            st.button('Aller voir les films', on_click=lambda: ouvrir_application('films.py')) ## Renvoie à page_films.py
-        with col4:
             st.button('Aller voirs les séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_séries.py
-        with col5:
+        with col3:
             st.button('Faire une recherche', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_recherche.py
 
             
