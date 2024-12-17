@@ -92,11 +92,11 @@ if not st.session_state.afficher_bloc_films and st.session_state.film_selectionn
     with col1:
         st.button("Back to Films",on_click=back) ## Renvoie à la page_précédente.py
     with col2:
-        st.button("Retour à l'acceuil", on_click=lambda: ouvrir_application('https://magmaanalytics-h2oejk75ad8aw3v83kfegd.streamlit.app/')) ## Renvoie à page acceuil.py
+        st.markdown('[Retour à l'acceuil](https://https://magmaanalytics-mainpage.streamlit.app/)', unsafe_allow_html=True)
     with col3:    
-        st.button('Aller aux séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_recherche.py
+        st.markdown('[Aller aux séries](https://https://magmaanalytics-mainpage.streamlit.app/)', unsafe_allow_html=True)
     with col4:
-        st.button('Faire une recherche', on_click=lambda: ouvrir_application('recherche.py')) ## Renvoie à page_recherche.py
+        st.markdown('[Recherche avancée](https://https://magmaanalytics-mainpage.streamlit.app/)', unsafe_allow_html=True)
     
 
     st.write(f"### {st.session_state.film_selectionne}")
