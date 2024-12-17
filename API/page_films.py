@@ -92,7 +92,7 @@ if not st.session_state.afficher_bloc_films and st.session_state.film_selectionn
     with col1:
         st.button("Back to Films",on_click=back) ## Renvoie à la page_précédente.py
     with col2:
-        st.markdown("[Retour à l'acceuil](https://magmaanalytics-mainpage.streamlit.app" unsafe_allow_html=True)
+        st.markdown("[Retour à l'acceuil](https://magmaanalytics-mainpage.streamlit.app/)" unsafe_allow_html=True)
     with col3:    
         st.markdown('[Aller aux séries](https://magmaanalytics-mainpage.streamlit.app/)', unsafe_allow_html=True)
     with col4:
