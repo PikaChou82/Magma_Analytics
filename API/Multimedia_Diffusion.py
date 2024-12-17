@@ -103,7 +103,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 user = st.text_input("Veuillez vous identifier pour plonger dans **votre** monde du cinéma ", value="Votre nom ici")
-def redirect_to_films():
+if st.session_state.redirect:
     st.markdown(f'<meta http-equiv="refresh" content="0; url=https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/">', unsafe_allow_html=True)
 
 
@@ -121,7 +121,7 @@ if st.button("Me connecter"):
         col1, col2, col3 = st.columns(3)
         with col1:
             if st.button('Aller voir les films'):
-              redirect_to_films()
+              st.session_state.redirect = True
         with col2:
             st.button('Aller voirs les séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_séries.py
         with col3:
