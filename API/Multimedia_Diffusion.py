@@ -5,7 +5,7 @@ import seaborn as sns
 import pandas as pd
 import subprocess
 from PIL import Image
-from pages.films import page_films
+from pages.page_films import page_films
 import sys
 
 sys.path.append("pages")
