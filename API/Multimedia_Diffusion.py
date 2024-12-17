@@ -1,3 +1,4 @@
+
 # Import des librairies
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -120,6 +121,7 @@ if st.button("Me connecter"):
             if st.button('Aller voir les films'):
                 test = "https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/"
                 st.write(f"Vous allez être redirigé vers : {test}")
+                time.sleep(15)
                 st.experimental_redirect(url=test)
         with col2:
             st.button('Aller voirs les séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_séries.py
