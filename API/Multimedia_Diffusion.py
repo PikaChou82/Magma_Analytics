@@ -5,6 +5,7 @@ import seaborn as sns
 import pandas as pd
 import subprocess
 from PIL import Image
+from pages.films import page_films
 
 # Titre
 st.set_page_config(page_title="Multimedia Diffusion", page_icon=":bar_chart:")
@@ -118,7 +119,8 @@ if st.button("Me connecter"):
         st.write("")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.button('Aller voir les films', on_click=lambda: ouvrir_application('https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/')) ## Renvoie à page_films.py
+            st.button('Aller voir les films', on_click=page_films)  # Appelle directement la fonction
+            #st.button('Aller voir les films', on_click=lambda: ouvrir_application('https://magmaanalytics-havwz2gjjosprb6gcxkbux.streamlit.app/')) ## Renvoie à page_films.py
         with col2:
             st.button('Aller voirs les séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_séries.py
         with col3:
