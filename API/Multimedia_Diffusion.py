@@ -5,10 +5,10 @@ import seaborn as sns
 import pandas as pd
 import subprocess
 from PIL import Image
-from pages.page_films import page_films
+from Pages.page_films import page_films
 import sys
 
-sys.path.append("pages")
+sys.path.append("Pages")
 # Titre
 st.set_page_config(page_title="Multimedia Diffusion", page_icon=":bar_chart:")
 
