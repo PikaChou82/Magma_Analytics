@@ -92,7 +92,7 @@ if not st.session_state.afficher_bloc_films and st.session_state.film_selectionn
     with col1:
         st.button("Back to Films",on_click=back) ## Renvoie à la page_précédente.py
     with col2:
-        st.button('Aller à l'acceuil', on_click=lambda: ouvrir_application('https://magmaanalytics-h2oejk75ad8aw3v83kfegd.streamlit.app/')) ## Renvoie à page acceuil.py
+        st.button("Aller à l'acceuil", on_click=lambda: ouvrir_application('https://magmaanalytics-h2oejk75ad8aw3v83kfegd.streamlit.app/')) ## Renvoie à page acceuil.py
     with col3:    
         st.button('Aller aux séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_recherche.py
     with col4:
