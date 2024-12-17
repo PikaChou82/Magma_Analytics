@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import subprocess
 
 # Titre et configuration
 st.set_page_config(page_title="Multimedia Diffusion - Vos films", page_icon=":bar_chart:")
@@ -87,7 +88,16 @@ if st.session_state.afficher_bloc_films:
 
 if not st.session_state.afficher_bloc_films and st.session_state.film_selectionne:
 
-    st.button("Back to Films",on_click=back)
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.button("Back to Films",on_click=back) ## Renvoie à la page_précédente.py
+    with col2:
+        st.button('Retour à la page principale', on_click=lambda: ouvrir_application('https://magmaanalytics-h2oejk75ad8aw3v83kfegd.streamlit.app/')) ## Renvoie à page acceuil.py
+    with col3:    
+        st.button('Aller aux séries', on_click=lambda: ouvrir_application('series.py')) ## Renvoie à page_recherche.py
+    with col4:
+        st.button('Faire une recherche', on_click=lambda: ouvrir_application('recherche.py')) ## Renvoie à page_recherche.py
+    
 
     st.write(f"### {st.session_state.film_selectionne}")
     row_film = dataset[dataset['imdb_id'] ==st.session_state.imdb_id].index[0]
@@ -134,3 +144,16 @@ if not st.session_state.afficher_bloc_films and st.session_state.film_selectionn
                 on_click=select_film,
                 args=(dataset.loc[propal[i],'title'], dataset.loc[propal[i],'imdb_id']) 
             )
+
+# Détecter le système d'exploitation
+if 'os' not in st.session_state:
+    import platform
+    st.session_state.os = platform.system()
+
+def ouvrir_application(chemin):
+    if st.session_state.get('os') == 'Windows':
+        subprocess.Popen(f'start {chemin}', shell=True)
+    elif st.session_state.get('os') == 'Linux':
+        subprocess.Popen(f'xdg-open {chemin}', shell=True)
+    elif st.session_state.get('os') == 'Darwin':  # macOS
+        subprocess.Popen(['open', chemin])
