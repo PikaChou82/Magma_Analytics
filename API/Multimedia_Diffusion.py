@@ -6,7 +6,9 @@ import pandas as pd
 import subprocess
 from PIL import Image
 from pages.films import page_films
+import sys
 
+sys.path.append("pages")
 # Titre
 st.set_page_config(page_title="Multimedia Diffusion", page_icon=":bar_chart:")
 
