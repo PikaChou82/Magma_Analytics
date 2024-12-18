@@ -95,43 +95,51 @@ if st.session_state.afficher_bloc_series:
 if not st.session_state.afficher_bloc_series and st.session_state.serie_selectionnee:
     st.button("Back to series", on_click=back)
 
-    st.write(f"{st.session_state.serie_selectionnee}")
-    details_serie = dataset[dataset['parentTconst'] == st.session_state.parentTconst]
-    if not details_serie.empty:
-        details_row = details_serie.iloc[0]
-        st.image(base_image + str(details_row['poster_path']), width=300)
-        st.write(f"**Année** : {details_row['startYear']}")
-        st.write(f"**Note** : {details_row['vote_average']}")
-        st.write(f"**Genre** : {details_row['genres']}")
-        st.write(f"**Synopsis** : {details_row.get('overview', 'Synopsis indisponible.')}")
+    # Mise en page des deux colonnes pour afficher les details de la serie selectionnée et les series récommandées
+    col1, col2 = st.columns([3, 2])
 
-    # Affichage des détails des saisons et épisodes
-    st.markdown("**Saisons et Épisodes**")
+    # Colonne de gauche affichera les détails de la série sélectionnée
+    with col1:
+        st.write(f"{st.session_state.serie_selectionnee}")
 
-    def afficher_saison_episodes(series_id):
+        details_serie = dataset[dataset['parentTconst'] == st.session_state.parentTconst]
+        if not details_serie.empty:
+            details_row = details_serie.iloc[0]
+            st.image(base_image + str(details_row['poster_path']), width=300)
+            st.write(f"**Année** : {details_row['startYear']}")
+            st.write(f"**Note** : {details_row['vote_average']}")
+            st.write(f"**Genre** : {details_row['genres']}")
+            st.write(f"**Synopsis** : {details_row.get('overview', 'Synopsis indisponible.')}")
+
+        # Affichage des détails des saisons et épisodes
+        st.markdown("**Saisons et Épisodes**")
+
+        def afficher_saison_episodes(series_id):
         
-        episodes = dataset[dataset['parentTconst'] == series_id]
-        if episodes.empty:
-            st.write("Aucun détail disponible pour cette série.")
-            return
+            episodes = dataset[dataset['parentTconst'] == series_id]
+            if episodes.empty:
+                st.write("Aucun détail disponible pour cette série.")
+                return
 
-        grouped = episodes.groupby('seasonNumber')
-        # Menu déroulant pour choisir la saison souhaitée
-        selection = st.selectbox("Choisissez une saison", grouped)
+            grouped = episodes.groupby('seasonNumber')
+            # Menu déroulant pour choisir la saison souhaitée
+            selection = st.selectbox("Choisissez une saison", grouped)
 
-        # Filtre pour afficher les épisodes de la saison selectionnée
-        episodes_saison = episodes[episodes['seasonNumber'] == selection].sort_values(by='episodeNumber')
+            # Filtre pour afficher les épisodes de la saison selectionnée
+            episodes_saison = episodes[episodes['seasonNumber'] == selection].sort_values(by='episodeNumber')
         
-        # Boucle pour afficher les épisodes 
-        #colonnes = st.columns(2)
-        for index, episode in episodes_saison.iterrows():
-            #col = colonnes[index % 2]
-            #with col:
-            st.image(base_image + str(episode['poster_path']), width=150)
-            st.write(f"{episode['title_episode']}")
-            st.write(f"**Synopsis**: {episode['overview']}")
+            # Boucle pour afficher les épisodes 
+            for index, episode in episodes_saison.iterrows():
+                st.image(base_image + str(episode['poster_path']), width=150)
+                st.write(f"{episode['title_episode']}")
+                st.write(f"**Synopsis**: {episode['overview']}")
                 
 
-    afficher_saison_episodes(st.session_state.parentTconst)
+        afficher_saison_episodes(st.session_state.parentTconst)
+
+    # Colonne de droite affichera les séries similaires recommandées
+    with col2:
+
+        st.markdown("### Séries similaires recommandées")
 
     
