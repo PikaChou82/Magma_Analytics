@@ -68,7 +68,7 @@ if st.session_state.afficher_bloc_series:
     st.write("Vous avez choisi :", genre)
 
     dataset_filtre = dataset[dataset['genres'] == genre][['title_series', 'vote_average', 'startYear', 'poster_path', 'parentTconst']]
-    dataset_filtre = dataset_filtre.drop_duplicates()
+    dataset_filtre = dataset_filtre.drop_duplicates('parentTconst')
     dataset_filtre = dataset_filtre.sort_values(by='vote_average', ascending=False)
     dataset_filtre = dataset_filtre.rename(columns={'title_series': 'Titre de la série', 'vote_average': 'Note', 'startYear': 'Année', 'poster_path': 'Affiche', 'parentTconst': 'parentTconst'})
 
