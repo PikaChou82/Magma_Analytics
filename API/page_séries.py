@@ -36,7 +36,7 @@ st.markdown(r"""
 
 #url = ("/content/drive/MyDrive/Donnees_Projet2/df_definitif_series.csv")
 #url = r"C:\Users\balde\Desktop\COURS_DATA\Projet_2\df_definitif_series1.csv"
-url = ("https://github.com/PikaChou82/Magma_Analytics/blob/main/Datasets/df_definitif_series.csv")
+url = ("https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/df_definitif_series.csv")
 
 base_image = "https://image.tmdb.org/t/p/w500/"
 dataset = pd.read_csv(url, sep=',', encoding='utf-8')
