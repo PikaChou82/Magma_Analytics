@@ -34,12 +34,12 @@ st.markdown(r"""
 
 # Chargement et préparation des données
 
-#url = ("/content/drive/MyDrive/Donnees_Projet2/df_definitif_series.csv")
-#url = r"C:\Users\balde\Desktop\COURS_DATA\Projet_2\df_definitif_series1.csv"
-url = ("https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/df_definitif_series.csv")
+url_serie = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/df_definitif_series.csv"
+url_reco = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/df_reco_series.csv"
 
 base_image = "https://image.tmdb.org/t/p/w500/"
-dataset = pd.read_csv(url, sep=',', encoding='utf-8')
+dataset = pd.read_csv(url_serie, sep=',', encoding='utf-8')
+dataset_reco = pd.read_csv(url_reco, sep=',', encoding='utf-8')
 liste_genres = dataset['genres'].unique()
 
 # Initialisation des variables d'état
