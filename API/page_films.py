@@ -94,9 +94,9 @@ if not st.session_state.afficher_bloc_films and st.session_state.film_selectionn
     with col2:
         st.markdown("[Retour à l'acceuil](https://magmaanalytics-mainpage.streamlit.app/)", unsafe_allow_html=True)
     with col3:    
-        st.markdown('[Aller aux séries](https://magmaanalytics-mainpage.streamlit.app/)', unsafe_allow_html=True)
+        st.markdown('[Aller aux séries](https://magmaanalytics-seriespage.streamlit.app/)', unsafe_allow_html=True)
     with col4:
-        st.markdown('[Recherche avancée](https://magmaanalytics-mainpage.streamlit.app/)', unsafe_allow_html=True)
+        st.markdown('[Recherche avancée](https://magmaanalytics-recherchepage.streamlit.app/)', unsafe_allow_html=True)
     
 
     st.write(f"### {st.session_state.film_selectionne}")
