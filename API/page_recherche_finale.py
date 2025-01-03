@@ -29,10 +29,12 @@ st.markdown(f"""
 # Chargement et préparation des données
 url = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/movies_with_reco_actors.csv"
 url2 = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/actors.csv"
-url3 = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/df_definitif_series.csv"
+url3 = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/df_definitif_series_actors.csv"
+url_reco = "https://raw.githubusercontent.com/PikaChou82/Magma_Analytics/refs/heads/main/Datasets/df_reco_series_final.csv"
 base_image = "https://image.tmdb.org/t/p/w500/"
 dataset_actors = pd.read_csv(url2, sep=',', encoding='utf-8')
 dataset = pd.read_csv(url, sep=',', encoding='utf-8')
+dataset_reco = pd.read_csv(url_reco, sep=',', encoding='utf-8')
 series = pd.read_csv(url3, sep=',', encoding='utf-8')
 
 liste_genres = ["Tous les genres"] + list(dataset['genres'].unique())
@@ -224,8 +226,8 @@ if st.session_state.afficher_bloc_series:
             series_filtre = series_filtre[series_filtre['title_series'].str.contains(titre_recherche, case=False, na=False)]
         
         # Filtrer par acteur si un texte est entré
-        #if acteur_recherche2:
-        #    series_filtre = series_filtre[series_filtre['primaryName'].str.contains(acteur_recherche2, case=False, na=False)]
+        if acteur_recherche:
+            series_filtre = series_filtre[series_filtre['primaryName'].str.contains(acteur_recherche, case=False, na=False)]
         
         # Filtrer par année si un texte est entré
         if annee_recherche:
@@ -301,7 +303,36 @@ if not st.session_state.afficher_bloc_series and st.session_state.serie_selectio
 
         afficher_saison_episodes(st.session_state.parentTconst)
 
+    
     # Colonne de droite affichera les séries similaires recommandées
     with col2:
 
         st.markdown("### Séries similaires recommandées")
+
+                # Filtre le dataset_reco pour trouver les recommandations de la série sélectionnée
+        details_reco = dataset_reco[dataset_reco['parentTconst'] == st.session_state.parentTconst]
+
+        if details_reco.empty:
+            st.error("Je n'ai pas trouvé de recommandation pour cette série.")
+        else:
+            details_reco = details_reco.iloc[0]  # On récupère la première ligne des recommandations
+
+            # Affichage des recommandations
+            for voisin_col in ['voisin1', 'voisin2', 'voisin3', 'voisin4']:
+                voisin_nom = details_reco[voisin_col]
+
+                # Ignorer la série sélectionnée 
+                if voisin_nom != st.session_state.serie_selectionnee:
+
+                    # Vérification de l'existence d'un voisin
+                    voisin_details = dataset_reco[dataset_reco['title_series'] == voisin_nom]
+
+                    if not voisin_details.empty:
+                        voisin_details_reco = voisin_details.iloc[0]
+                        st.write(f"**{voisin_nom}**")
+                        st.image(base_image + str(voisin_details_reco['poster_path']), width=100)
+                        st.write(f"**Année** : {voisin_details_reco['startYear']}")
+                        st.write(f"**Note** : {voisin_details_reco['vote_average']}")
+                        st.write("---")
+                    else:
+                        st.warning(f"Pas d'infos pour cette série recommandée : {voisin_nom}")   
