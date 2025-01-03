@@ -16,6 +16,7 @@ Mariamma, Amadaou, Giulio, Mehdi et Audrey
 > - [X] Films sortis après 1960
 > - [X] Films dont la note est supérieure à 6
 > - [X] Sample de 5 000 films
+
 > [!TIP]
 > Méthode de classification : KNearestNeighbors [3 proches voisins]
 > Features retenues : ['isAdult','genres_','autre_prod_countries', 'directors', 'actor1_','actor2_','actor3_']]
