@@ -6,7 +6,11 @@ Mariamma, Amadaou, Giulio, Mehdi et Audrey
 
 ## Etapes :
 
-###  Sélection des tables
+### Méthodes d'extraction des données
+> - read standard sur les tables de taille raisonnable
+> - chunck pour les tables plus importantes
+
+### EDA
 
 > [!NOTE]
 > 1 Table movies_final regroupant la base Tmdb ainsi que la base Title_akas.
@@ -17,11 +21,6 @@ Mariamma, Amadaou, Giulio, Mehdi et Audrey
 > - [X] Films dont la note est supérieure à 6
 > - [X] Sample de 5 000 films
 
-> [!TIP]
-> Méthode de classification : KNearestNeighbors [3 proches voisins]
-> Features retenues : ['isAdult','genres_','autre_prod_countries', 'directors', 'actor1_','actor2_','actor3_']]
-> Process : RobustScaler puis PCA
-
 > [!NOTE]
 > 1 Table series_final regroupant la base Tmdb ainsi que la base Title_episodes.
  Filtres appliqués : 
@@ -30,6 +29,14 @@ Mariamma, Amadaou, Giulio, Mehdi et Audrey
 > - [X] Films sortis après 1960
 > - [X] Films dont la note est supérieure à 6
 > - [X] Sample de 200 séries
+
+### Classification
+
+> [!TIP]
+> - Méthode de classification : KNearestNeighbors [3 proches voisins]
+> - Features retenues : ['isAdult','genres_','autre_prod_countries', 'directors', 'actor1_','actor2_','actor3_']]
+> - Process : RobustScaler puis PCA
+
 
 ###  Sélection des KPI's
 
@@ -55,6 +62,7 @@ Mariamma, Amadaou, Giulio, Mehdi et Audrey
 ### API
   
 1. 1 Page principale
+   - Connexion avec login
    - On choisit une page films / une page série / une page recherche <br>
 
 2. 1 Page films
