@@ -44,20 +44,8 @@ Mariamma, Amadaou, Giulio, Mehdi et Audrey
 > KPIs : <br>
 > - [X] Films
 > - [X] Acteurs
-> - [ ] Séries
-> - [ ] Tmdb
+> - [X] Séries
 
-> [!IMPORTANT]
->  **KPIs restants TmdB**<br>
->  Budget <br>
->  Revenus <br>
->  Compagnies de production <br>
->  Pays de production <br>
->  **KPIs restants Séries**<br>
->  Nombre total de séries  <br>
->  Nombre de séries par année de sortie  <br>
->  Nombre de séries par genre  <br>
->  Top 10 des séries les mieux notées <br>
 
 ### API
   
